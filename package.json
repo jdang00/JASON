@@ -5,6 +5,7 @@
   "repository": "https://github.com/jdang00/JASON",
   "description": "A formatter for the .JASON file",
   "version": "0.0.1",
+  "icon": "./jason.png",
   "engines": {
     "vscode": "^1.89.0"
   },
