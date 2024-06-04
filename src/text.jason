@@ -1,0 +1,16 @@
+@Object
+| field1
+| field2
+| field3
+    @Subfield
+    | subfield1
+    | subfield2
+    | subfield3
+    @@
+@@
+
+@AnotherObject
+| anotherField1
+| anotherField2
+| anotherField3
+@@

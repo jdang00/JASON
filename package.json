@@ -1,7 +1,7 @@
 {
   "name": "jason-formatter",
   "displayName": "JASON Formatter",
-  "description": "A formatter for the .json file",
+  "description": "A formatter for the .JASON file",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.89.0"
@@ -9,15 +9,23 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "onLanguage:jason"
+
+  ],
   "main": "./out/extension.js",
   "contributes": {
-    "commands": [
+    "languages": [
       {
-        "command": "jason-formatter.helloWorld",
-        "title": "Hello World"
+          "id": "jason",
+          "aliases": [
+              "JASON"
+          ],
+          "extensions": [
+              "jason"
+          ]
       }
-    ]
+  ]
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
@@ -25,7 +33,10 @@
     "watch": "tsc -watch -p ./",
     "pretest": "npm run compile && npm run lint",
     "lint": "eslint src --ext ts",
-    "test": "vscode-test"
+    "test": "vscode-test",
+    "postinstall": "node ./node_modules/vscode/bin/install && tsc"
+
+    
   },
   "devDependencies": {
     "@types/vscode": "^1.89.0",

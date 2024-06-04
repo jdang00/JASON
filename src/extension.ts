@@ -1,26 +1,45 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
+'use strict';
+
 import * as vscode from 'vscode';
 
-// This method is called when your extension is activated
-// Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
+  vscode.languages.registerDocumentFormattingEditProvider('jason', {
+    provideDocumentFormattingEdits(document: vscode.TextDocument): vscode.TextEdit[] {
+      const edits: vscode.TextEdit[] = [];
+	  const text = document.getText().trim().replace(/\s/g, "");
 
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "jason-formatter" is now active!');
+	  const ilovejason = JSON.parse(unyeetsonify(text));
+	  const jasoniscool = JSON.stringify(ilovejason, null, 2);
 
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with registerCommand
-	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('jason-formatter.helloWorld', () => {
-		// The code you place here will be executed every time your command is executed
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from JASON Formatter!');
-	});
+	  const fullRange = new vscode.Range(
+		document.positionAt(0),
+		document.positionAt(document.getText().length)
+	);
 
-	context.subscriptions.push(disposable);
+
+	  edits.push(vscode.TextEdit.replace(fullRange, yeetsonify(jasoniscool)));
+
+	  return edits;
+
+    }
+  });
 }
 
-// This method is called when your extension is deactivated
-export function deactivate() {}
+function yeetsonify(json: string): string {
+	return json
+	  .replace(/{/g, '<yeetson')
+	  .replace(/}/g, 'yeetson>')
+	  .replace(/\[/g, '<jazzleberg')
+	  .replace(/\]/g, 'jazzleberg>')
+	  .replace(/,/g, "|");
+  }
+  
+  function unyeetsonify(yeetsonified: string): string {
+	return yeetsonified
+	  .replace(/<yeetson/g, '{')
+	  .replace(/yeetson>/g, '}')
+	  .replace(/<jazzleberg/g, '[')
+	  .replace(/jazzleberg>/g, ']')
+	  .replace(/\|/g, ',');
+	  ;
+  }
