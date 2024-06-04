@@ -1,6 +1,8 @@
 {
   "name": "jason-formatter",
   "displayName": "JASON Formatter",
+  "publisher": "JustinADang",
+  "repository": "https://github.com/jdang00/JASON",
   "description": "A formatter for the .JASON file",
   "version": "0.0.1",
   "engines": {
